@@ -1,8 +1,8 @@
 {
-  "name": "telegram-static",
+  "name": "Frontend starter kit",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,10 +13,14 @@
   },
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-angular-protractor": "0.0.2",
     "gulp-minify-css": "^1.1.1",
     "gulp-plumber": "^1.0.1",
+    "gulp-protractor": "^1.0.0",
     "gulp-sass": "^2.0.1",
     "gulp-sourcemaps": "^1.5.2",
-    "gulp-webserver": "^0.9.1"
+    "gulp-webserver": "^0.9.1",
+    "protractor": "^2.1.0",
+    "wiredep": "^2.2.2"
   }
 }

@@ -3,7 +3,12 @@ var gulp = require('gulp'),
 		plumber = require('gulp-plumber'),
 		minifyCSS = require('gulp-minify-css'),
 		sass = require('gulp-sass'),
-		sourcemaps = require('gulp-sourcemaps');
+		sourcemaps = require('gulp-sourcemaps'),
+		//angularProtractor = require('gulp-angular-protractor'),
+		protractor = require("gulp-protractor").protractor,
+		webdriver_standalone = require("gulp-protractor").webdriver_standalone,
+		webdriver_update = require("gulp-protractor").webdriver_update,
+		wiredep = require('wiredep');
 
 gulp.task('webserver', function() {
 	gulp.src('app')
@@ -34,6 +39,31 @@ gulp.task('styles', function() {
 		.pipe(gulp.dest('app/build/css'));
 });
 
+// Downloads the selenium webdriver
+gulp.task('webdriver_update', webdriver_update);
+
+// Start the standalone selenium server
+// NOTE: This is not needed if you reference the
+// seleniumServerJar in your protractor.conf.js
+gulp.task('webdriver_standalone', webdriver_standalone);
+
+gulp.task('e2e', ['webdriver_update'], function(){
+
+	gulp.src(['./app/test/e2e/**/*.spec.js'])
+		.pipe(protractor({
+			'configFile': './app/test/e2e/protractor.config.js'
+		}))
+		.on('error', function(e) { throw e });
+});
+
+gulp.task('bower', function () {
+	wiredep({
+		src: './app/index.html',
+		directory: '.app/bower_componets/',
+		exclude: ['.app/bower_componets/susy', '.app/bower_componets/breakpoint-sass', '.app/bower_componets/sassy-map'],
+		bowerJson: require('./bower.json'),
+	});
+});
 
 gulp.task('watch', function(){
 
