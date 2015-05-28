@@ -1,0 +1,19 @@
+{
+  "name": "telegram-static",
+  "version": "0.0.0",
+  "authors": [
+    "Cvetkovic Milos <milos.cvetkovic@internetgroup.rs>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "susy": "~2.2.5",
+    "breakpoint-sass": "~2.6.1"
+  }
+}
